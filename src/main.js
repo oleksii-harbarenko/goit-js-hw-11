@@ -7,6 +7,7 @@ import { renderImages } from './js/render-functions';
 const form = document.querySelector('.search-form');
 const input = document.querySelector('.search-input');
 const waitMessage = document.querySelector('.wait-message');
+const gallery = document.querySelector('.gallery');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -24,7 +25,7 @@ form.addEventListener('submit', e => {
   waitMessage.innerHTML =
     'Loading images, please wait...<span class="loader"></span>';
 
-  document.querySelector('.gallery').innerHTML = '';
+  gallery.innerHTML = '';
 
   searchImages(searchImage)
     .then(response => {
