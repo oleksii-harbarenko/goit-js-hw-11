@@ -24,6 +24,8 @@ form.addEventListener('submit', e => {
   waitMessage.innerHTML =
     'Loading images, please wait...<span class="loader"></span>';
 
+  document.querySelector('.gallery').innerHTML = '';
+
   searchImages(searchImage)
     .then(response => {
       if (response.data.hits.length === 0) {
@@ -39,8 +41,15 @@ form.addEventListener('submit', e => {
       waitMessage.textContent = '';
     })
     .catch(error => {
-      waitMessage.textContent = 'Something went wrong ...';
+      iziToast.error({
+        title: 'Error',
+        message: 'Something went wrong. Please try again',
+        position: 'topRight',
+      });
       console.log(error);
+    })
+    .finally(() => {
+      waitMessage.textContent = '';
     });
   form.reset();
 });
